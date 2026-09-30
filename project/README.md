@@ -1,14 +1,12 @@
-# كويك بايت — Quick Bite
+# Quick Bite — Source
 
-The application source for this repository lives in this folder.
+The application lives in this folder.
 
-**Full documentation, setup and architecture notes are in the [root README](../README.md).**
-
-Quick start:
+Setup, run and data model: **[root README](../README.md)**
 
 ```bash
 npm install
 npm start        # http://localhost:8080
 ```
 
-You will also need `js/config/firebase.config.js` — see the root README, §1.
+Requires `js/config/firebase.config.js` — copy it from `firebase.config.example.js`.
