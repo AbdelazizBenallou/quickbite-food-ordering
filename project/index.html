@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport">
+<meta content="mobile_tab" name="shell-type">
+<link href="assets/icons/favicon.svg" rel="icon" type="image/svg+xml">
+<script src="js/theme.js"></script>
+<link href="css/theme.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+<link href="css/responsive.css" rel="stylesheet">
+<script src="js/vendor/tailwind.min.js"></script>
+<script src="js/tailwind.config.js"></script>
+</head>
+<body class="bg-surface font-body-md text-body-md text-on-surface flex flex-col min-h-screen">
+<header class="fixed top-0 w-full z-50 pt-safe bg-surface/80 backdrop-blur-xl shadow-navbar">
+<div class="h-16 px-margin-mobile flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded-full bg-primary flex items-center justify-center shrink-0 shadow-sm overflow-hidden p-1">
+<img alt="كويك بايت" class="w-full h-full object-contain" src="assets/images/logo.png">
+</div>
+<div class="flex flex-col text-right">
+<span class="font-headline-sm text-headline-sm text-primary leading-tight font-bold">كويك بايت</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant leading-none">طلب الطعام</span>
+</div>
+</div>
+<button class="w-9 h-9 rounded-full flex items-center justify-center bg-surface-container text-on-surface-variant hover:bg-surface-container-high hover:text-primary transition-colors border-0 cursor-pointer shrink-0" id="theme-toggle" type="button" aria-pressed="false" title="تبديل إلى الوضع الداكن">
+<span class="material-symbols-outlined text-[20px]">light_mode</span>
+</button>
+</div>
+</header>
+<main class="flex-1 flex flex-col relative w-full pt-16 bg-surface px-margin-mobile pb-6">
+<div class="flex flex-col w-full pb-6 space-y-space-lg">
+<!-- Kitchen Vibe Banner with Rich Dark Green tones -->
+<div class="bg-surface-container-low rounded-xl p-space-md flex items-center justify-between shadow-sm border border-outline-variant/30">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined material-symbols-outlined-filled text-primary text-[20px]">restaurant_menu</span>
+</div>
+<div class="min-w-0">
+<h2 class="font-headline-sm text-headline-sm text-on-surface truncate">قائمة طازجة وسريعة</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate">اختر وجباتك المفضلة وأكد طلبك بكل سهولة</p>
+</div>
+</div>
+<span id="store-status-chip" class="inline-flex items-center px-2.5 py-0.5 rounded-full font-label-sm text-label-sm bg-primary/10 text-primary font-bold shrink-0">
+      <span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse ml-1"></span><span id="store-status-text">مفتوح الآن</span>
+    </span>
+</div>
+<!-- Menu: rendered from the `categories` + `items` Firestore collections by
+     js/components/menuView.js. New categories/products appear with no code change. -->
+<div class="flex flex-col space-y-space-lg" id="menu-root">
+<div class="flex items-center justify-center py-8 text-on-surface-variant font-body-sm text-body-sm" id="menu-loading">
+جاري تحميل القائمة…
+</div>
+</div>
+<!-- Cart & Customer Details Section -->
+<section class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm space-y-space-md">
+<div class="flex items-center justify-between pb-1">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[22px]">shopping_bag</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">سلتك</h3>
+</div>
+<button class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors font-bold" data-clear-cart type="button">
+        مسح الكل
+      </button>
+</div>
+<!-- Active Cart Items List -->
+<div class="space-y-space-xs" id="cart-items"></div>
+<!-- Empty State -->
+<div class="py-6 text-center bg-surface-container-low rounded-xl" id="cart-empty">
+<span class="material-symbols-outlined text-on-surface-variant text-[36px]">ramen_dining</span>
+<p class="font-label-lg text-label-lg text-on-surface mt-1">سلتك فارغة</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">اضغط على زر + إضافة من القائمة أعلاه</p>
+</div>
+<!-- Customer Form -->
+<div class="space-y-space-sm pt-space-xs">
+<h4 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider font-bold">بيانات الزبون</h4>
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-1" for="cust-name">الاسم الكامل</label>
+<div class="relative">
+<input class="w-full h-11 px-space-md rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md placeholder-on-surface-variant/60 focus:bg-surface-container-lowest focus:ring-1 focus:ring-primary focus:outline-none transition-all shadow-sm text-right" id="cust-name" type="text" autocomplete="name">
+</div>
+<p class="hidden text-body-sm text-body-sm text-error font-label-sm text-label-sm mt-1 text-right" data-error-for="cust-name"></p>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-1" for="cust-phone">رقم الهاتف</label>
+<div class="relative">
+<input class="w-full h-11 px-space-md rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md placeholder-on-surface-variant/60 focus:bg-surface-container-lowest focus:ring-1 focus:ring-primary focus:outline-none transition-all shadow-sm text-right" dir="ltr" id="cust-phone" type="tel" inputmode="numeric" autocomplete="tel-national" maxlength="10">
+</div>
+<p class="hidden text-body-sm text-body-sm text-error font-label-sm text-label-sm mt-1 text-right" data-error-for="cust-phone"></p>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-1" for="cust-address">عنوان التوصيل</label>
+<div class="relative">
+<input class="w-full h-11 px-space-md rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md placeholder-on-surface-variant/60 focus:bg-surface-container-lowest focus:ring-1 focus:ring-primary focus:outline-none transition-all shadow-sm text-right" id="cust-address" type="text" autocomplete="street-address">
+</div>
+<p class="hidden text-body-sm text-body-sm text-error font-label-sm text-label-sm mt-1 text-right" data-error-for="cust-address"></p>
+</div>
+</div>
+<!-- Order Summary & Checkout -->
+<div class="pt-space-xs space-y-space-sm">
+<div class="bg-surface-container-low p-space-sm rounded-lg flex items-center justify-between">
+<span class="font-label-lg text-label-lg text-on-surface font-bold">المجموع الكلي:</span>
+<span class="font-headline-md text-headline-md text-primary font-bold" id="cart-total">0 د.ج</span>
+</div>
+<p class="hidden text-body-sm text-body-sm text-error font-label-md text-label-md text-right" id="order-error">تعذّر إرسال الطلب، حاول مرة أخرى.</p>
+<div class="hidden rounded-xl bg-error-container text-on-error-container p-space-sm flex items-center gap-space-sm border border-outline-variant/30" id="store-closed-notice">
+<span class="material-symbols-outlined text-[18px] shrink-0">storefront</span>
+<span class="font-body-sm text-body-sm font-semibold">المتجر مغلق مؤقتاً — لا يمكن استقبال الطلبات حالياً.</span>
+</div>
+<button class="w-full h-12 rounded-xl opacity-50 bg-primary text-on-primary hover:bg-primary-hover active:bg-primary-active font-headline-sm text-headline-sm flex items-center justify-center gap-space-sm shadow-md active:scale-[0.99] transition-all" id="btn-confirm" disabled type="button">
+<span id="btn-confirm-label">تأكيد الطلب</span>
+<span class="material-symbols-outlined text-[20px] rtl:rotate-180">arrow_forward</span>
+</button>
+</div>
+<!-- Confirmation Toast / Box -->
+<div class="hidden rounded-xl bg-surface-container-high p-space-md shadow-sm transition-all space-y-space-sm" id="order-success-box">
+<div class="flex items-start gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[20px]">check</span>
+</div>
+<div class="flex-1 text-right">
+<h4 class="font-headline-sm text-headline-sm text-on-surface leading-tight font-bold">تم استلام طلبك بنجاح!</h4>
+<p class="font-body-md text-body-md text-primary font-bold mt-0.5" id="order-number">طلب رقم #1001</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">بدأ المطبخ بإعداد وجبتك. مدة التوصيل المتوقعة: 25 دقيقة.</p>
+</div>
+</div>
+<div class="flex justify-end pt-1 gap-space-sm">
+<button class="px-3 py-1.5 rounded-lg bg-surface-container text-on-surface font-label-md text-label-md hover:bg-surface-container-highest transition-colors font-bold" data-new-order type="button">
+          طلب جديد
+        </button>
+</div>
+</div>
+</section>
+</div>
+</main>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

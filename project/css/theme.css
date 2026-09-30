@@ -1,0 +1,193 @@
+/* ==========================================================================
+   كويك بايت | Quick Bite — theme tokens (Light / Dark)
+
+   Every colour in the design comes from a token (bg-surface, text-on-surface,
+   border-outline-variant/30, …). The Tailwind theme maps each token to
+   rgb(var(--c-…)), so switching themes is nothing more than swapping the values
+   below — no component has to know which theme is active.
+
+   Light is the default. `data-theme="dark"` is set by js/theme.js before the
+   first paint and by js/services/themeService.js when the customer toggles it.
+   ========================================================================== */
+
+:root {
+  /* The active theme, read by the JS (dataset + persisted in localStorage). */
+  --theme: light;
+
+  color-scheme: light;
+
+  /* ---------------------------------------------------------------------
+     Light palette — neutral light-grey surfaces (used by both the customer
+     site and the admin login). Green/error accents stay Material-coloured.
+     --------------------------------------------------------------------- */
+  --c-surface: 242 242 243;
+  --c-surface-bright: 255 255 255;
+  --c-surface-dim: 213 213 216;
+  --c-background: 242 242 243;
+  --c-on-surface: 24 26 28;
+  --c-on-background: 24 26 28;
+  --c-surface-variant: 226 228 230;
+  --c-on-surface-variant: 82 86 92;
+  --c-surface-container-lowest: 255 255 255;
+  --c-surface-container-low: 249 249 250;
+  --c-surface-container: 244 244 245;
+  --c-surface-container-high: 236 236 238;
+  --c-surface-container-highest: 228 228 231;
+  --c-surface-tint: 46 106 65;
+
+  --c-outline: 108 114 120;
+  --c-outline-variant: 200 204 207;
+
+  --c-primary: 20 83 45;
+  --c-on-primary: 255 255 255;
+  --c-primary-container: 20 83 45;
+  --c-on-primary-container: 135 198 149;
+  --c-primary-fixed: 177 242 190;
+  --c-primary-fixed-dim: 150 213 163;
+  --c-on-primary-fixed: 0 33 13;
+  --c-on-primary-fixed-variant: 18 81 44;
+  --c-inverse-primary: 150 213 163;
+  /* Interactive shades of the primary button (hover / active) */
+  --c-primary-hover: 22 101 52;
+  --c-primary-active: 0 59 27;
+
+  --c-inverse-surface: 51 48 45;
+  --c-inverse-on-surface: 247 239 235;
+
+  --c-error: 186 26 26;
+  --c-on-error: 255 255 255;
+  --c-error-container: 255 218 214;
+  --c-on-error-container: 147 0 10;
+  /* Form validation (see input.is-invalid in style.css) */
+  --c-error-ring: 186 26 26;
+  --c-error-surface: 255 218 214;
+
+  --c-secondary: 155 69 0;
+  --c-on-secondary: 255 255 255;
+  --c-secondary-container: 253 138 66;
+  --c-on-secondary-container: 104 44 0;
+  --c-secondary-fixed: 255 219 202;
+  --c-secondary-fixed-dim: 255 182 142;
+  --c-on-secondary-fixed: 51 18 0;
+  --c-on-secondary-fixed-variant: 118 51 0;
+
+  --c-tertiary: 0 58 23;
+  --c-on-tertiary: 255 255 255;
+  --c-tertiary-container: 0 84 36;
+  --c-on-tertiary-container: 106 203 126;
+  --c-tertiary-fixed: 149 248 167;
+  --c-tertiary-fixed-dim: 121 219 141;
+  --c-on-tertiary-fixed: 0 33 10;
+  --c-on-tertiary-fixed-variant: 0 83 35;
+
+  /* Warning / attention (pending orders, "new" badges) */
+  --c-warning: 180 83 9;
+  --c-on-warning: 255 255 255;
+  --c-warning-container: 254 243 199;
+  --c-on-warning-container: 120 53 15;
+
+  /* Tint used by the soft shadows — nearly invisible in light, deeper in dark */
+  --c-shadow: 0 0 0;
+  --shadow-strength: 0.04;
+}
+
+/* --------------------------------------------------------------------------
+   Dark palette (Material 3 dark) — same warm hue family, inverted surfaces
+   -------------------------------------------------------------------------- */
+[data-theme="dark"] {
+  --theme: dark;
+
+  color-scheme: dark;
+
+  --c-surface: 20 18 15;
+  --c-surface-bright: 58 55 52;
+  --c-surface-dim: 20 18 15;
+  --c-background: 20 18 15;
+  --c-on-surface: 236 224 217;
+  --c-on-background: 236 224 217;
+  --c-surface-variant: 65 73 69;
+  --c-on-surface-variant: 192 201 192;
+  --c-surface-container-lowest: 15 13 11;
+  --c-surface-container-low: 29 26 23;
+  --c-surface-container: 33 30 27;
+  --c-surface-container-high: 43 40 37;
+  --c-surface-container-highest: 54 51 48;
+  --c-surface-tint: 135 198 149;
+
+  --c-outline: 138 147 138;
+  --c-outline-variant: 65 73 69;
+
+  --c-primary: 135 198 149;
+  --c-on-primary: 0 57 32;
+  --c-primary-container: 0 82 47;
+  --c-on-primary-container: 163 242 174;
+  --c-primary-fixed: 0 82 47;
+  --c-primary-fixed-dim: 0 57 32;
+  --c-on-primary-fixed: 163 242 174;
+  --c-on-primary-fixed-variant: 135 198 149;
+  --c-inverse-primary: 20 83 45;
+  --c-primary-hover: 158 214 171;
+  --c-primary-active: 108 179 124;
+
+  --c-inverse-surface: 236 224 217;
+  --c-inverse-on-surface: 51 47 44;
+
+  --c-error: 255 180 171;
+  --c-on-error: 105 0 5;
+  --c-error-container: 147 0 10;
+  --c-on-error-container: 255 218 214;
+  --c-error-ring: 255 180 171;
+  --c-error-surface: 69 26 26;
+
+  --c-secondary: 255 182 142;
+  --c-on-secondary: 76 26 0;
+  --c-secondary-container: 109 44 0;
+  --c-on-secondary-container: 255 219 202;
+  --c-secondary-fixed: 109 44 0;
+  --c-secondary-fixed-dim: 76 26 0;
+  --c-on-secondary-fixed: 255 219 202;
+  --c-on-secondary-fixed-variant: 255 182 142;
+
+  --c-tertiary: 121 219 141;
+  --c-on-tertiary: 0 57 26;
+  --c-tertiary-container: 0 82 47;
+  --c-on-tertiary-container: 149 248 167;
+  --c-tertiary-fixed: 0 82 47;
+  --c-tertiary-fixed-dim: 0 57 26;
+  --c-on-tertiary-fixed: 149 248 167;
+  --c-on-tertiary-fixed-variant: 121 219 141;
+
+  --c-warning: 251 191 36;
+  --c-on-warning: 69 26 3;
+  --c-warning-container: 120 53 15;
+  --c-on-warning-container: 253 230 138;
+
+  --c-shadow: 0 0 0;
+  --shadow-strength: 0.55;
+}
+
+/* --------------------------------------------------------------------------
+   Smooth theme switching
+
+   The class is added by themeService only for the moment of the switch, so the
+   page never animates on first paint and hover/press transitions keep working
+   the rest of the time.
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: no-preference) {
+  html.theme-anim *,
+  html.theme-anim *::before,
+  html.theme-anim *::after {
+    transition:
+      background-color 0.35s ease,
+      border-color 0.35s ease,
+      color 0.35s ease,
+      fill 0.35s ease,
+      outline-color 0.35s ease,
+      box-shadow 0.35s ease !important;
+  }
+}
+
+/* The Material-Symbols ligature glyphs must follow the text colour. */
+.material-symbols-outlined {
+  color: inherit;
+}

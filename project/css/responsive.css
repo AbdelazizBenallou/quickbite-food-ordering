@@ -1,0 +1,25 @@
+/* ==========================================================================
+   كويك بايت | Quick Bite — responsive / viewport rules
+   Loaded AFTER style.css. Everything here is viewport-dependent: safe areas,
+   dynamic viewport height and the mobile-first base layer.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Base layer (viewport sizing + iOS safe areas)
+   -------------------------------------------------------------------------- */
+@layer base{
+html,body{width:100vw;margin:0;padding:0;font-family:'Cairo',sans-serif;}
+body{overscroll-behavior:none;}
+.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}
+.pt-safe{padding-top:env(safe-area-inset-top,0px);}
+main>:first-child{margin-top:0!important;}
+main>:last-child{margin-bottom:0!important;}
+}
+
+/* --------------------------------------------------------------------------
+   Full-height canvas: keeps the checkout reachable on short screens.
+   dvh follows the mobile URL bar as it collapses/expands.
+   -------------------------------------------------------------------------- */
+body {
+  min-height: max(884px, 100dvh);
+}

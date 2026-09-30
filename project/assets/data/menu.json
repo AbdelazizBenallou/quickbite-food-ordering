@@ -1,0 +1,56 @@
+[
+  {
+    "id": "pizza",
+    "name": "بيتزا",
+    "price": 500,
+    "image": "assets/images/pizza.jpg",
+    "categoryId": "food",
+    "available": true,
+    "order": 1
+  },
+  {
+    "id": "burger",
+    "name": "برغر",
+    "price": 400,
+    "image": "assets/images/burger.jpg",
+    "categoryId": "food",
+    "available": true,
+    "order": 2
+  },
+  {
+    "id": "sandwich",
+    "name": "ساندويتش",
+    "price": 300,
+    "image": "assets/images/sandwich.jpg",
+    "categoryId": "food",
+    "available": true,
+    "order": 3
+  },
+  {
+    "id": "cola",
+    "name": "كوكاكولا",
+    "price": 150,
+    "image": "assets/images/cola.jpg",
+    "categoryId": "drinks",
+    "available": true,
+    "order": 1
+  },
+  {
+    "id": "pepsi",
+    "name": "بيبسي",
+    "price": 150,
+    "image": "assets/images/pepsi.jpg",
+    "categoryId": "drinks",
+    "available": true,
+    "order": 2
+  },
+  {
+    "id": "water",
+    "name": "ماء معدني",
+    "price": 50,
+    "image": "assets/images/water.jpg",
+    "categoryId": "drinks",
+    "available": true,
+    "order": 3
+  }
+]

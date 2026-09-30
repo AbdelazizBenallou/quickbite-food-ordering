@@ -1,0 +1,160 @@
+# ===========================================================================
+#  Food Delivery — كويك بايت
+#  Ignores credentials, dependencies, build noise and design leftovers.
+# ===========================================================================
+
+
+# ---------------------------------------------------------------------------
+#  1. SECRETS — never commit these
+# ---------------------------------------------------------------------------
+
+# Firebase SERVICE-ACCOUNT keys. These are real admin credentials: whoever
+# holds one bypasses Firestore security rules entirely. tools/grant-admin.mjs
+# reads one from an arbitrary path, so keep the key out of the repo root,
+# out of project/, and out of any subfolder.
+*service*account*.json
+*service-account*.json
+serviceAccount*.json
+firebase-adminsdk-*.json
+*-admin-key.json
+*-sa-key.json
+gcp-service-account*.json
+**/private_key*.json
+
+# Private keys / keystores / certificates
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+id_rsa
+id_ed25519
+*.ppk
+
+# Environment files. The app is a static site with no build step, so these are
+# not used today — ignored so nobody adds one later and leaks it.
+.env
+.env.*
+!.env.example
+
+# Any credential blob a future integration might drop in the tree
+**/credentials.json
+**/*secret*.json
+**/*-key.json
+
+# npm auth tokens (keep package-lock.json itself — it is NOT a secret)
+.npmrc
+.yarnrc
+
+
+# ---------------------------------------------------------------------------
+#  2. FIREBASE WEB CONFIG (defence in depth, see README §9)
+# ---------------------------------------------------------------------------
+#
+#  The Web App config in js/config/firebase.config.js is PUBLIC by design — it
+#  ships to every browser and grants no privileged access on its own. It is
+#  ignored anyway so a leaked key cannot be scraped and burned for quota abuse
+#  against this project, and so forks are forced to supply their own.
+#
+#  Commit the template instead; copy it locally to make the app run:
+#      cp project/js/config/firebase.config.example.js \
+#         project/js/config/firebase.config.js
+#
+project/js/config/firebase.config.js
+
+
+# ---------------------------------------------------------------------------
+#  3. DEPENDENCIES
+# ---------------------------------------------------------------------------
+node_modules/
+jspm_packages/
+.pnp
+.pnp.js
+
+# package-lock.json / npm-shrinkwrap.json are intentionally NOT ignored.
+# They are required for reproducible installs and contain no credentials.
+# (A lockfile can embed a registry token only via .npmrc, which is ignored above.)
+
+
+# ---------------------------------------------------------------------------
+#  4. LOGS & DEBUG OUTPUT
+# ---------------------------------------------------------------------------
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+firebase-debug.log
+firestore-debug.log
+ui-debug.log
+database-debug.log
+.pg-debug.log
+
+
+# ---------------------------------------------------------------------------
+#  5. CACHES
+# ---------------------------------------------------------------------------
+.cache/
+.parcel-cache/
+.turbo/
+.eslintcache
+.stylelintcache
+.temp/
+.tmp/
+tmp/
+
+# Firebase Emulator Suite state (local stacks keep data here)
+.firebase/
+emulator-data/
+firebase-debug.*
+
+
+# ---------------------------------------------------------------------------
+#  6. DEPLOY / HOSTING TOOLING
+# ---------------------------------------------------------------------------
+.vercel/
+.netlify/
+.firebase/
+firebase-debug.log
+*-debug.log
+
+# Local environment overrides for hosting
+.netrc
+.now/
+.htaccess.local
+
+
+# ---------------------------------------------------------------------------
+#  7. OS & EDITOR NOISE
+# ---------------------------------------------------------------------------
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/launch.json
+!.vscode/tasks.json
+.idea/
+*.swp
+*.swo
+*~
+.history/
+
+
+# ---------------------------------------------------------------------------
+#  8. DESIGN / REFERENCE ARTIFACTS (kept locally, not in version control)
+# ---------------------------------------------------------------------------
+# The original single-file prototype the storefront was compared against,
+# plus a 934 KB reference screenshot. The maintained app lives in project/.
+/client.html
+/screen.png
